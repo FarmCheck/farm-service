@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-main-deployment
+  labels:
+    app: redis-main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-main
+  template:
+    metadata:
+      labels:
+        app: redis-main
+    spec:
+      containers:
+      - name: redis-main
+        image: redis:6.0.9-alpine
+        ports:
+        - containerPort: 6379
+          name: redis-port
+        readinessProbe:
+          tcpSocket:
+            port: redis-port
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: redis-port
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        resources:
+          #requests:
+          #  memory: "1Gi"
+          #  cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-main
+spec:
+  type: ClusterIP
+  selector:
+    app: redis-main
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: redis-port

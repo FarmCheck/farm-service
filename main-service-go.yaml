@@ -1,0 +1,1594 @@
+openapi: 3.0.0
+
+info:
+    version: 1.0.0
+    title: Main service - Lotus Fitness
+    description: Design, description of Lotus Fitness API
+
+servers:
+    - url: http://localhost:3000/api/v1/
+    - url: https://main.lotusfitness.xyz/api/v1/
+
+security:
+    - BasicAuth: []
+
+tags:
+    - name: body parts
+
+    - name: categories
+
+    - name: courses
+
+    - name: course body parts
+
+    - name: course categories
+
+    - name: course foods
+
+    - name: course images
+
+    - name: exercises
+
+    - name: exercise body parts
+
+    - name: feedbacks
+
+    - name: feedbacks nutrition
+
+    - name: follows
+
+    - name: foods
+
+    - name: food nutritions
+
+    - name: notifications
+
+    - name: nutritions
+
+    - name: nutrition chemical compositions
+
+    - name: nutrition vitamins
+
+    - name: reports
+
+    - name: schedules
+
+    - name: schedule exercises
+
+    - name: schedule nutritions
+
+    - name: trainer registrations
+
+    - name: tutorials
+
+    - name: users
+
+paths:
+    /body-parts/filter/advance:
+        get:
+            tags:
+                - 'body-parts'
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200BodyPartFilterAdvanceArrayResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /categories/catalog/favorite/{user-id}:
+        get:
+            tags:
+                - 'categories'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/UserId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200CategoryCatalogFavoriteArrayResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /categories/filter/advance:
+        get:
+            tags:
+                - 'categories'
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200CategoryFilterAdvanceArrayResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /courses/filter/advance:
+        post:
+            tags:
+                - 'courses'
+            requestBody:
+                #  ----- Added line  ------------------------------------------
+                $ref: '#/components/requestBodies/FilterAdvanceRequestBody'
+                #  ---- /Added line  ------------------------------------------
+
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200CourseFilterResultArrayResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /courses/catalog/favorite/{user-id}:
+        get:
+            tags:
+                - 'courses'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/UserId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200CourseCatalogPopularArrayResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /courses/moodle/overview/{user-id}:
+        get:
+            tags:
+                - 'courses'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/UserId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200CourseMoodleOverviewArrayResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /courses/detail/overview/{course-id}:
+        get:
+            tags:
+                - 'courses'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/CourseId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200CourseDetailOverviewResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /courses/detail/schedules/{course-id}:
+        get:
+            tags:
+                - 'courses'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/CourseId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200CourseDetailScheduleResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /courses/moodle/overview/{user-id}/{course-id}:
+        get:
+            tags:
+                - 'courses'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/UserId'
+                - $ref: '#/components/parameters/CourseId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200CourseMoodleOverviewResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /courses/moodle/statistic/{user-id}/{course-id}:
+        get:
+            tags:
+                - 'courses'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/UserId'
+                - $ref: '#/components/parameters/CourseId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200CourseMoodleStatisticResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /feedbacks:
+        post:
+            tags:
+                - 'feedbacks'
+            requestBody:
+                #  ----- Added line  ------------------------------------------
+                $ref: '#/components/requestBodies/FeedbackRequestBody'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200FeedbackResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /feedbacks-nutrition:
+        post:
+            tags:
+                - 'feedback-nutrition'
+            requestBody:
+                #  ----- Added line  ------------------------------------------
+                $ref: '#/components/requestBodies/FeedbackNutritionRequestBody'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200FeedbackNutritionResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /foods/detail/overview/{course-id}:
+        get:
+            tags:
+                - 'foods'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/CourseId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200FoodDetailOverviewArrayResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /schedules/moodle/detail/{user-id}/{schedule-id}:
+        get:
+            tags:
+                - 'courses'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/UserId'
+                - $ref: '#/components/parameters/ScheduleId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200ScheduleMoodleDetailResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /schedules/moodle/nutrition/{user-id}/{schedule-id}:
+        get:
+            tags:
+                - 'courses'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/UserId'
+                - $ref: '#/components/parameters/ScheduleId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200ScheduleMoodleNutritionResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+    /users/catalog/favorite/{user-id}:
+        get:
+            tags:
+                - 'users'
+            parameters:
+                #  ----- Added line  ------------------------------------------
+                - $ref: '#/components/parameters/UserId'
+                #  ---- /Added line  ------------------------------------------
+            responses:
+                '200':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/200UserCatalogPopularArrayResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+                '400':
+                    #  ----- Added line  ----------------------------------------
+                    $ref: '#/components/responses/400ErrorResponse'
+                    #  ---- /Added line  ----------------------------------------
+
+components:
+    # Security scheme definitions (see Authentication)
+    securitySchemes:
+        BasicAuth:
+            type: http
+            scheme: basic
+
+    # Reusable schemas (data models)
+    schemas:
+        FeedbackRequest:
+            type: object
+            properties:
+                content:
+                    type: string
+                point_prepare:
+                    type: integer
+                point_trainer:
+                    type: integer
+                point_support:
+                    type: integer
+                point_time:
+                    type: integer
+
+        FeedbackNutritionRequest:
+            type: object
+            properties:
+                id:
+                    type: string
+                user_id:
+                    type: string
+                nutrition_id:
+                    type: string
+                amount:
+                    type: integer
+                unit:
+                    type: string
+
+        FilterAdvanceRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                target_type:
+                    type: string
+                form_type:
+                    type: string
+                quantity_course:
+                    type: number
+                body_parts:
+                    type: array
+                categories:
+                    type: array
+                sort_rating:
+                    type: string
+                    enum:
+                        - DESC
+                        - ASC
+                sort_alphabet:
+                    type: string
+                    enum:
+                        - DESC
+                        - ASC
+    # Reusable request bodies
+    requestBodies:
+        FilterAdvanceRequestBody:
+            description: none
+            required: true
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/FilterAdvanceRequest'
+                    examples:
+                        FilterAdvanceRequestExample:
+                            $ref: '#/components/examples/FilterAdvanceRequestExample'
+
+        FeedbackRequestBody:
+            description: none
+            required: true
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/FeedbackRequest'
+                    examples:
+                        FeedbackRequestExample:
+                            $ref: '#/components/examples/FeedbackRequestExample'
+
+        FeedbackNutritionRequestBody:
+            description: none
+            required: true
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/FeedbackNutritionRequest'
+                    examples:
+                        FeedbackNutritionRequestExample:
+                            $ref: '#/components/examples/FeedbackNutritionRequestExample'
+    # Reusable operation parameters
+    parameters:
+        CourseId:
+            name: course-id
+            in: path
+            required: true
+            schema:
+                type: string
+
+        ScheduleId:
+            name: course-id
+            in: path
+            required: true
+            schema:
+                type: string
+
+        UserId:
+            name: user-id
+            in: path
+            required: true
+            schema:
+                type: string
+
+    # Reusable responses, such as 401 Unauthorized or 400 Bad Request
+    responses:
+        400ErrorResponse:
+            description: Invalid request
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+
+        200BodyPartFilterAdvanceArrayResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        BodyPartFilterAdvanceArrayResponseExample:
+                            $ref: '#/components/examples/BodyPartFilterAdvanceArrayResponseExample'
+
+        200CategoryCatalogFavoriteArrayResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        CategoryCatalogFavoriteArrayResponseExample:
+                            $ref: '#/components/examples/CategoryCatalogFavoriteArrayResponseExample'
+
+        200CategoryFilterAdvanceArrayResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        CategoryFilterAdvanceArrayResponseExample:
+                            $ref: '#/components/examples/CategoryFilterAdvanceArrayResponseExample'
+
+        200CourseCatalogPopularArrayResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        CourseCatalogPopularArrayResponseExample:
+                            $ref: '#/components/examples/CourseCatalogPopularArrayResponseExample'
+
+        200CourseFilterResultArrayResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        CourseFilterResultArrayResponseExample:
+                            $ref: '#/components/examples/CourseFilterResultArrayResponseExample'
+
+        200CourseMoodleOverviewArrayResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        CourseMoodleOverviewArrayResponseExample:
+                            $ref: '#/components/examples/CourseMoodleOverviewArrayResponseExample'
+
+        200CourseDetailOverviewResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        CourseDetailOverviewResponseExample:
+                            $ref: '#/components/examples/CourseDetailOverviewResponseExample'
+
+        200CourseDetailScheduleResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        CourseDetailScheduleResponseExample:
+                            $ref: '#/components/examples/CourseDetailScheduleResponseExample'
+
+        200CourseMoodleOverviewResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        CourseMoodleOverviewResponseExample:
+                            $ref: '#/components/examples/CourseMoodleOverviewResponseExample'
+
+        200CourseMoodleStatisticResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        CourseMoodleStatisticResponseExample:
+                            $ref: '#/components/examples/CourseMoodleStatisticResponseExample'
+
+        200FeedbackResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        FeedbackResponseExample:
+                            $ref: '#/components/examples/FeedbackResponseExample'
+
+        200FeedbackNutritionResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        FeedbackNutritionResponseExample:
+                            $ref: '#/components/examples/FeedbackNutritionResponseExample'
+
+        200FoodDetailOverviewArrayResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        FoodDetailOverviewArrayResponseExample:
+                            $ref: '#/components/examples/FoodDetailOverviewArrayResponseExample'
+
+        200ScheduleMoodleDetailResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        ScheduleMoodleDetailResponseExample:
+                            $ref: '#/components/examples/ScheduleMoodleDetailResponseExample'
+
+        200ScheduleMoodleNutritionResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        ScheduleMoodleNutritionResponseExample:
+                            $ref: '#/components/examples/ScheduleMoodleNutritionResponseExample'
+
+        200UserCatalogPopularArrayResponse:
+            description: none
+            content:
+                application/json:
+                    examples:
+                        CourseCatalogPopularArrayResponseExample:
+                            $ref: '#/components/examples/CourseCatalogPopularArrayResponseExample'
+
+    # Reusable examples
+    examples:
+        BodyPartFilterAdvanceArrayResponseExample:
+            value:
+                data:
+                    - id: 2188824203011112223
+                      name: Tri nao
+                      avatar: https://picsum.photos/200/200
+                      quantity: 4
+
+                    - id: 218883420b011112223
+                      name: Tim
+                      avatar: https://picsum.photos/200/200
+                      quantity: 12
+
+                    - id: 418882420b011112223
+                      name: Than
+                      avatar: https://picsum.photos/200/200
+                      quantity: 8
+
+                    - id: 128882420b011112223
+                      name: M
+                      avatar: https://picsum.photos/200/200
+                      quantity: 3
+
+                    - id: 210882420b012112223
+                      name: Tieu hoa
+                      avatar: https://picsum.photos/200/200
+                      quantity: 5
+
+                    - id: 218882420b013112223
+                      name: Bo phan sinh duc
+                      avatar: https://picsum.photos/200/200
+                      quantity: 20
+
+        CategoryFilterAdvanceArrayResponseExample:
+            value:
+                data:
+                    - id: 218882420b011112223
+                      name: Boxing
+                      avatar: https://picsum.photos/200/300
+                      quantity: 3
+
+                    - id: 218883420b011112223
+                      name: Hatha Yoga
+                      avatar: https://picsum.photos/200/300
+                      quantity: 12
+
+                    - id: 418882420b011112223
+                      name: Body Bum
+                      avatar: https://picsum.photos/200/300
+                      quantity:
+
+                    - id: 128882420b031112223
+                      name: Jumpa
+                      avatar: https://picsum.photos/200/300
+                      quantity: 23
+
+                    - id: 210882420b012112223
+                      name: Karate
+                      avatar: https://picsum.photos/200/300
+                      quantity: 5
+
+        CategoryCatalogFavoriteArrayResponseExample:
+            value:
+                data:
+                    - id: 2188824200011112223
+                      name: Hatha Yoga
+                      avatar: https://picsum.photos/200/300
+                      content: Xuong khop
+                      description: 'Gentle Yoga là loại hình yoga mang trong nó sự kết hợp của các tư thế chậm và đơn giản,
+                      nhưng có tác động sâu sắc tới hệ cơ và xươ . . .'
+                      body_parts:
+                          - id: 2188824201211112223
+                            name: Mat
+                            avatar: https://picsum.photos/200/200
+                          - id: 2188824201261112223
+                            name: Cot song
+                            avatar: https://picsum.photos/200/200
+                          - id: 2188824201231112223
+                            name: Tri nao
+                            avatar: https://picsum.photos/200/200
+                          - id: 2188824201281112223
+                            name: Tim
+                            avatar: https://picsum.photos/200/200
+
+                    - id: 2198824200011112223
+                      name: Gentle Yoga
+                      avatar: https://picsum.photos/200/300
+                      content: Tong quat
+                      description: 'Gentle Yoga là loại hình yoga mang trong nó sự kết hợp của các tư thế chậm và đơn giản,
+                      nhưng có tác động sâu sắc tới hệ cơ và xươ . . .'
+                      body_parts:
+                          - id: 2134824201211112223
+                            name: Mat
+                            avatar: https://picsum.photos/200/200
+                          - id: 2146824201261112223
+                            name: Cot song
+                            avatar: https://picsum.photos/200/200
+                          - id: 2132824201241112223
+                            name: Bung
+                            avatar: https://picsum.photos/200/200
+                          - id: 2168824201231112223
+                            name: Tri nao
+                            avatar: https://picsum.photos/200/200
+                          - id: 2188824201281112223
+                            name: Tim
+                            avatar: https://picsum.photos/200/200
+
+                    - id: 2188824200011112223
+                      name: Thien nen
+                      avatar: https://piencsum.photos/200/300
+                      content: Thien nen
+                      description: 'Gentle Yoga là loại hình yoga mang trong nó sự kết hợp của các tư thế chậm và đơn giản,
+                      nhưng có tác động sâu sắc tới hệ cơ và xươ . . .'
+                      body_parts:
+                          - id: 2188824201211112223
+                            name: Mat
+                            avatar: https://picsum.photos/200/200
+                          - id: 2188824201241112223
+                            name: Bung
+                            avatar: https://picsum.photos/200/200
+                          - id: 2188824201231112223
+                            name: Tri nao
+                            avatar: https://picsum.photos/200/200
+                          - id: 2188824201281102223
+                            name: Than
+                            avatar: https://picsum.photos/200/200
+                          - id: 2188824201281132223
+                            name: Bo phan sinh duc
+                            avatar: https://picsum.photos/200/200
+                pagination:
+                    current: 1
+                    next: 2
+                    pre: 0
+                    take: 5
+                    total: 16
+
+        ScheduleMoodleDetailResponseExample:
+            value:
+                id: 210882420b012112223
+                at_time: 22/12/2012
+                morning:
+                    lost_energy: 320
+                    intake_energy: 300
+                afternoon:
+                    lost_energy: 320
+                    intake_energy: 400
+                evening:
+                    lost_energy: 320
+                    intake_energy: 600
+                exercises:
+                    - name: Bai tap buoi 15 van cot song
+                      start_time: 8:00
+                      end_time: 8:45
+                      energy: 400
+                      feedback: Ban tap hom nay rat tot nhung cac dong tac van xoan chua tot can co gang
+
+                    - name: Bai tap buoi 16 van co
+                      start_time: 8:45
+                      end_time: 9:20
+                      energy: 450
+                      feedback: Ban tap hom nay rat tot nhung cac dong tac van xoan chua tot can co gang
+                nutritions:
+                    - name: Bai tap buoi 15 van cot song
+                      start_time: 8:00
+                      end_time: 8:45
+                      energy: 400
+                      feedback: Ban tap hom nay rat tot nhung cac dong tac van xoan chua tot can co gang
+
+                    - name: Bai tap buoi 16 van co
+                      start_time: 8:45
+                      end_time: 9:20
+                      energy: 450
+                      feedback: Ban tap hom nay rat tot nhung cac dong tac van xoan chua tot can co gang
+
+        ScheduleMoodleNutritionResponseExample:
+            value:
+                id: 210882420b012112223
+                at_time: 22/12/2012
+                water:
+                    id: 210882420b012112223
+                    amount: 250
+                    unit: ml
+                    isCheck: true
+                morning:
+                    - id: 210882420b012113223
+                      name: Chuoi to dai
+                      avatar: https://picsum.photos/200/200
+                      total_amount: 300
+                      feedback_amount: 150
+                      unit: mg
+                      isCheck: true
+
+                    - id: 210882420b012413223
+                      name: Dau tay
+                      avatar: https://picsum.photos/200/200
+                      total_amount: 200
+                      feedback_amount: 150
+                      unit: mg
+                      isCheck: true
+
+                afternoon:
+                    - id: 210882420b012113223
+                      name: Bo sap Dak Lak
+                      avatar: https://picsum.photos/200/200
+                      total_amount: 300
+                      feedback_amount: 150
+                      unit: mg
+                      isCheck: true
+
+                    - id: 210882420b012413323
+                      name: Dau tay
+                      avatar: https://picsum.photos/200/200
+                      total_amount: 200
+                      feedback_amount: 0
+                      unit: mg
+                      isCheck: false
+
+                evening:
+                    - id: 210882420b012113223
+                      name: Yen mach trong suot
+                      avatar: https://picsum.photos/200/200
+                      total_amount: 400
+                      feedback_amount: 0
+                      unit: mg
+                      isCheck: false
+
+                    - id: 210882420b012413223
+                      name: Buoi nam roi
+                      avatar: https://picsum.photos/200/200
+                      total_amount: 200
+                      feedback_amount: 190
+                      unit: mg
+                      isCheck: true
+
+                    - id: 210892420b012413223
+                      name: Xoai cat Dai Loan
+                      avatar: https://picsum.photos/200/200
+                      total_amount: 250
+                      feedback_amount: 190
+                      unit: mg
+                      isCheck: true
+
+        CourseCatalogPopularArrayResponseExample:
+            value:
+                data:
+                    - id: 2188824200011112223
+                      course_name: Cam nang yoga cho nguoi moi bat dau
+                      trainer_name: Hoang Thi Ngoc Hanh
+                      fee: 3000000
+                      total_point: 9.9
+
+                    - id: 2188824200811112223
+                      course_name: Bi kip trai thang thanh bong
+                      trainer_name: Nguyen Thi Thanh Luan
+                      fee: 4000000
+                      total_point: 6.9
+
+                    - id: 2188824200111122248
+                      course_name: Noi Tinh Yeu Ket Thuc
+                      trainer_name: Dao Thi Tu Anh
+                      fee: 9000000
+                      total_point: 7.9
+
+                    - id: 3188824208111122248
+                      course_name: Tren tinh ban duoi tinh yeu
+                      trainer_name: Nguyen Hong Xuan Trang
+                      fee: 2000000
+                      total_point: 7.9
+                pagination:
+                    current: 1
+                    next: 2
+                    pre: 0
+                    take: 5
+                    total: 10
+
+        CourseFilterResultArrayResponseExample:
+            value:
+                data:
+                    - id: 2188824200011112223
+                      course_name: Cam nang yoga cho nguoi moi bat dau
+                      trainer_name: Hoang Thi Ngoc Hanh
+                      fee: 3000000
+                      total_point: 9.9
+                      type: online
+                      ranks:
+                          - id: 2198824200011112223
+                            rank_name: master 5 nam
+                            category_name: Yoga
+                          - id: 2198824202011112223
+                            rank_name: Trinh do 1
+                            category_name: Gym
+                      students:
+                          - id: 2198824200011112223
+                            avatar: https://picsum.photos/200/200
+                          - id: 2198824203011112223
+                            avatar: https://picsum.photos/200/200
+                          - id: 2198824203011112223
+                            avatar: https://picsum.photos/200/200
+                          - id: 2198824203011112223
+                            avatar: https://picsum.photos/200/200
+                          - id: 2198824203011112223
+                            avatar: https://picsum.photos/200/200
+
+                    - id: 2188824200811112223
+                      course_name: Bi kip trai thang thanh bong
+                      trainer_name: Nguyen Thi Thanh Luan
+                      fee: 4000000
+                      total_point: 6.9
+                      type: offline
+                      ranks:
+                          - id: 2198824200011112223
+                            rank_name: giao vien 200h
+                            category_name: Yoga
+                      students:
+                          - id: 2198824203211112223
+                            avatar: https://picsum.photos/200/200
+                          - id: 2198824203111112223
+                            avatar: https://picsum.photos/200/200
+
+                    - id: 2188824200111122248
+                      course_name: Noi Tinh Yeu Ket Thuc
+                      trainer_name: Dao Thi Tu Anh
+                      fee: 9000000
+                      total_point: 7.9
+                      type: online
+                      ranks:
+                          - id: 2198824200011112223
+                            rank_name: giao vien 500h
+                            category_name: Jumpa
+                      students:
+
+                    - id: 3188824208111122248
+                      course_name: Tren tinh ban duoi tinh yeu
+                      trainer_name: Nguyen Hong Xuan Trang
+                      fee: 2000000
+                      total_point: 7.9
+                      type: offline
+                      ranks:
+                          - id: 2198824200011112223
+                            rank_name: Yoga tri lieu
+                            category_name: Yoga tri lieu
+                          - id: 2198824200011112223
+                            rank_name: master 5 nam
+                            category_name: Yoga
+                      students:
+                          - id: 2198824200011112323
+                            avatar: https://picsum.photos/200/200
+                          - id: 2198824203011112423
+                            avatar: https://picsum.photos/200/200
+                          - id: 2198824203011116223
+                            avatar: https://picsum.photos/200/200
+
+                    - id: 3188834208111122248
+                      course_name: Tren tinh ban duoi tinh yeu
+                      trainer_name: Nguyen Hong Xuan Mai
+                      fee: 2000000
+                      total_point: 7.9
+                      type: PT 1vs1 offline
+                      ranks:
+                          - id: 2198824200011112223
+                            rank_name: master 5 nam
+                            category_name: Yoga
+                      students:
+                          - id: 2198824203011112323
+                            avatar: https://picsum.photos/200/200
+                pagination:
+                    current: 1
+                    next: 2
+                    pre: 0
+                    take: 5
+                    total: 12
+
+        CourseDetailOverviewResponseExample:
+            value:
+                data:
+                    id: 2188824200011112223
+                    name: Khoa tap yoga 14 ngay
+                    type: online
+                    point: 4
+                    trainer:
+                        id: 2188824200011212223
+                        name: Hoang Thi Ngoc Hanh
+                        avatar: https://picsum.photos/200/200
+                        categories:
+                            - id: 2188824200012212223
+                              name: Yoga cong dong
+                              rank: master
+                            - id: 2188824210012212223
+                              name: Yoga tri lieu
+                              rank: Chuyen gia 500
+                    fee: 1000000
+                    start_time: 22/12/2012
+                    end_time: 30/12/2012
+                    max_student: 4
+                    curr_student: 2
+                    body_parts:
+                        - id: 2188824220012212223
+                          avatar: https://picsum.photos/200/200
+                          name: Mat
+                        - id: 2188824224012212223
+                          avatar: https://picsum.photos/200/200
+                          name: Tai
+                        - id: 2188824220212212223
+                          avatar: https://picsum.photos/200/200
+                          name: Rang
+                        - id: 2188824224012212223
+                          avatar: https://picsum.photos/200/200
+                          name: Tim
+                    students:
+                        - id: 2188824220012212223
+                          avatar: https://picsum.photos/200/200
+                          name: Banh Thi Buoi
+                        - id: 2188824224012212223
+                          avatar: https://picsum.photos/200/200
+                          name: Dao Tu Anh
+                        - id: 2188824220212212223
+                          avatar: https://picsum.photos/200/200
+                          name: Nguyen Hong Xuan Trang
+                        - id: 2188824224012212223
+                          avatar: https://picsum.photos/200/200
+                          name: Nguyen Thi Thao
+                    description: 'Ưu Đãi Dành Cho 100 Khách Đầu Tiên, Miễn Phí Tập Với Huấn Luyện Viên, Sở Hữu Body Săn Chắc.'
+                    target: 'Ưu Đãi Dành Cho 100 Khách Đầu Tiên, Miễn Phí Tập Với Huấn Luyện Viên, Sở Hữu Body Săn Chắc.
+                        Phương Thức Thanh Toán Mới, Linh Hoạt & Dễ Dàng Tham Gia Mà Không Cần Trả'
+                    contraindications:
+                        - id: 2188824224012212223
+                          content: Không dành cho phụ nữ có thai và trẻ em dưới 10 tuối
+                          avatar: https://picsum.photos/200/200
+                        - id: 2188824224012212323
+                          content: Không dành cho phụ nữ có thai và trẻ em dưới 10 tuối
+                          avatar: https://picsum.photos/200/200
+                        - id: 2188824224012212233
+                          content: Không dành cho phụ nữ có thai và trẻ em dưới 10 tuối
+                          avatar: https://picsum.photos/200/200
+                    address: Saigon Center, Lầu 6, 65 Lê Lợi, Phường Bến Nghé, Quận 1, Tp. Hồ Chí Minh
+
+        CourseMoodleOverviewArrayResponseExample:
+            value:
+                data:
+                    close_courses:
+                        - id: 2188824200011112223
+                          course_name: Cam nang yoga cho nguoi moi bat dau
+                          trainer_name: Hoang Thi Ngoc Hanh
+                          category_name: Jumpa
+                          fee: 3000000
+                          total_point: 9.9
+                          ranks:
+                              - id: 2198824200011112223
+                                rank_name: master 5 nam
+                                category_name: Yoga
+                              - id: 2198824202011112223
+                                rank_name: Trinh do 1
+                                category_name: Gym
+                          students:
+                              - id: 2198824200011112223
+                                avatar: https://picsum.photos/200/200
+                              - id: 2198824203011112223
+                                avatar: https://picsum.photos/200/200
+                              - id: 2198824203011112223
+                                avatar: https://picsum.photos/200/200
+                              - id: 2198824203011112223
+                                avatar: https://picsum.photos/200/200
+                              - id: 2198824203011112223
+                                avatar: https://picsum.photos/200/200
+
+                        - id: 2188824200811112223
+                          course_name: Bi kip trai thang thanh bong
+                          trainer_name: Nguyen Thi Thanh Luan
+                          category_name: Jumpa
+                          fee: 4000000
+                          total_point: 6.9
+                          ranks:
+                              - id: 2198824200011112223
+                                rank_name: giao vien 200h
+                                category_name: Yoga
+                          students:
+                              - id: 2198824203211112223
+                                avatar: https://picsum.photos/200/200
+                              - id: 2198824203111112223
+                                avatar: https://picsum.photos/200/200
+
+                    in_progress_courses:
+                        - id: 2188824200111122248
+                          course_name: Noi Tinh Yeu Ket Thuc
+                          trainer_name: Dao Thi Tu Anh
+                          category_name: Hatha Yoga
+                          fee: 9000000
+                          total_point: 7.9
+                          ranks:
+                              - id: 2198824200011112223
+                                rank_name: giao vien 500h
+                                category_name: Jumpa
+                          students:
+
+                        - id: 3188824208111122248
+                          course_name: Tren tinh ban duoi tinh yeu
+                          trainer_name: Nguyen Hong Xuan Trang
+                          category_name: Thien Nen
+                          fee: 2000000
+                          total_point: 7.9
+                          ranks:
+                              - id: 2198824200011112223
+                                rank_name: Yoga tri lieu
+                                category_name: Yoga tri lieu
+                              - id: 2198824200011112223
+                                rank_name: master 5 nam
+                                category_name: Yoga
+                          students:
+                              - id: 2198824200011112323
+                                avatar: https://picsum.photos/200/200
+                              - id: 2198824203011112423
+                                avatar: https://picsum.photos/200/200
+                              - id: 2198824203011116223
+                                avatar: https://picsum.photos/200/200
+
+                        - id: 3188834208111122248
+                          course_name: Tren tinh ban duoi tinh yeu
+                          trainer_name: Nguyen Hong Xuan Mai
+                          category_name: Gym
+                          fee: 2000000
+                          total_point: 7.9
+                          ranks:
+                              - id: 2198824200011112223
+                                rank_name: master 5 nam
+                                category_name: Yoga
+                          students:
+                              - id: 2198824203011112323
+                                avatar: https://picsum.photos/200/200
+                pagination:
+                    current: 1
+                    next: 2
+                    pre: 0
+                    take: 5
+                    total: 12
+
+        CourseDetailScheduleResponseExample:
+            value:
+                data:
+                    id: 218882420b011112223
+                    calendar:
+                        start_time: 22/12/2020
+                        end_time: 25/12/2020
+                        list:
+                            - id: 2188824201511112223
+                              at_time: 22/12/2012
+                              is_exercise: true
+
+                            - id: 218882420b111112223
+                              at_time: 23/12/2012
+                              is_exercise: false
+
+                            - id: 218882420b041112223
+                              at_time: 24/12/2012
+                              is_exercise: true
+
+                            - id: 218882420b031112223
+                              at_time: 25/12/2012
+                              is_exercise: false
+                    schedules:
+                        - id: 218882420b011112223
+                          exercises:
+                              morning:
+                                  - id: 218882420b012112223
+                                    name: Tu the be gay cot song
+                                    start_time: 8:00
+                                    end_time: 8:45
+
+                                  - id: 218882420b012122223
+                                    name: Tu the be gay cot song
+                                    start_time: 9:00
+                                    end_time: 9:45
+                              afternoon:
+                                  - id: 218882420b012112223
+                                    name: Tu the be gay cot song
+                                    start_time: 13:00
+                                    end_time: 13:45
+
+                                  - id: 218882420b012122223
+                                    name: Tu the be gay cot song
+                                    start_time: 14:00
+                                    end_time: 14:45
+                          nutritions:
+                              morning:
+                                  - id: 218882420b012112223
+                                    name: Xoai song
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Thanh long ruot do
+                                    energy: 200
+
+                              afternoon:
+                                  - id: 218882420b012112223
+                                    name: Bo sap Da Lat
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Vai Hung Yen
+                                    energy: 200
+
+                              evening:
+                                  - id: 218882420b012112223
+                                    name: Chuoi hat
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Dau xanh
+                                    energy: 200
+
+                        - id: 218882420b011112223
+                          nutritions:
+                              morning:
+                                  - id: 218882420b012112223
+                                    name: Xoai song
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Thanh long ruot do
+                                    energy: 200
+
+                              afternoon:
+                                  - id: 218882420b012112223
+                                    name: Bo sap Da Lat
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Vai Hung Yen
+                                    energy: 200
+
+                              evening:
+                                  - id: 218882420b012112223
+                                    name: Chuoi hat
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Dau xanh
+                                    energy: 200
+
+                        - id: 218882420b011112223
+                          exercises:
+                              morning:
+                                  - id: 218882420b012112223
+                                    name: Tu the be gay cot song
+                                    start_time: 8:00
+                                    end_time: 8:45
+
+                                  - id: 218882420b012122223
+                                    name: Tu the be gay cot song
+                                    start_time: 9:00
+                                    end_time: 9:45
+                              afternoon:
+                                  - id: 218882420b012112223
+                                    name: Tu the be gay cot song
+                                    start_time: 13:00
+                                    end_time: 13:45
+
+                                  - id: 218882420b012122223
+                                    name: Tu the be gay cot song
+                                    start_time: 14:00
+                                    end_time: 14:45
+                          nutritions:
+                              morning:
+                                  - id: 218882420b012112223
+                                    name: Xoai song
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Thanh long ruot do
+                                    energy: 200
+
+                              afternoon:
+                                  - id: 218882420b012112223
+                                    name: Bo sap Da Lat
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Vai Hung Yen
+                                    energy: 200
+
+                              evening:
+                                  - id: 218882420b012112223
+                                    name: Chuoi hat
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Dau xanh
+                                    energy: 200
+
+                        - id: 218882420b011112223
+                          nutritions:
+                              morning:
+                                  - id: 218882420b012112223
+                                    name: Xoai song
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Thanh long ruot do
+                                    energy: 200
+
+                              afternoon:
+                                  - id: 218882420b012112223
+                                    name: Bo sap Da Lat
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Vai Hung Yen
+                                    energy: 200
+
+                              evening:
+                                  - id: 218882420b012112223
+                                    name: Chuoi hat
+                                    energy: 200
+
+                                  - id: 218882420b012122223
+                                    name: Dau xanh
+                                    energy: 200
+
+        CourseMoodleOverviewResponseExample:
+            value:
+                id: 218882420b011112223
+                name: Khoa hoc yoga cua team Lotus Fitness
+                total_day: 28
+                remaining_day: 14
+                lost_energy: 1000
+                intake_energy: 8000
+                exercises:
+                    - name: Bai tap buoi 15 van cot song
+                      start_time: 8:00
+                      end_time: 8:45
+                      energy: 400
+
+                    - name: Bai tap buoi 16 van co
+                      start_time: 8:45
+                      end_time: 9:20
+                      energy: 450
+                nutritions:
+                    - nutritions_name: Day tay den
+                      start_time: 7:45
+                      end_time: 8:00
+                      energy: 300
+
+                    - name: Bo sap Da Lat
+                      start_time: 7:45
+                      end_time: 8:00
+                      energy: 180
+
+                    - name: Chuoi huong Ha Tinh
+                      start_time: 7:45
+                      end_time: 8:00
+                      energy: 150
+
+        CourseMoodleStatisticResponseExample:
+            value:
+                data:
+                    id: 218882420b011112223
+                    name: Khoa hoc yoga cua team Lotus Fitness
+                    days: 56
+                    exercises: 45
+                    nutritions: 60
+                    schedules:
+                        - id: 218882420b011212223
+                          at_time: 21/12/2020
+                          lost_energy: 500
+                          intake_energy: 700
+                        - id: 218982420b011212223
+                          at_time: 22/12/2020
+                          lost_energy: 600
+                          intake_energy: 450
+                        - id: 218982420b011212123
+                          at_time: 23/12/2020
+                          lost_energy: 800
+                          intake_energy: 700
+                        - id: 218982420b011212423
+                          at_time: 24/12/2020
+                          lost_energy: 850
+                          intake_energy: 600
+                        - id: 218982420b011213223
+                          at_time: 25/12/2020
+                          lost_energy: 400
+                          intake_energy: 300
+                        - id: 218982420b011213223
+                          at_time: 26/12/2020
+                          lost_energy: 500
+                          intake_energy: 400
+
+        FeedbackRequestExample:
+            value:
+                content: tuyet voi tuyet voi, that tuyet voi, good good
+                point_prepare: 4
+                point_trainer: 5
+                point_support: 5
+                point_time: 4
+
+        FeedbackNutritionRequestExample:
+            value:
+                user_id: 218882420b011112223
+                nutrition_id: 218882420b011112223
+                amount: 300
+                unit: gr
+
+        FeedbackResponseExample:
+            value:
+                data:
+                    id: 218882420b011112223
+                    content: tuyet voi tuyet voi, that tuyet voi, good good
+                    point_prepare: 4
+                    point_trainer: 5
+                    point_support: 5
+                    point_time: 4
+                    create_at: 22/11/2012
+
+        FeedbackNutritionResponseExample:
+            value:
+                data:
+                    id: 218882420b011112223
+                    user_id: 218882420b011112223
+                    nutrition_id: 218882420b011112223
+                    amount: 300
+                    unit: gr
+
+        FilterAdvanceRequestExample:
+            value:
+                name: Yoga yoga
+                target_type: Khoa tap
+                form_type: online
+                quantity_course: 5
+                body_parts:
+                    - id: 218882420b011112223
+                      name: Tri nao
+                      avatar: https://picsum.photos/200/200
+
+                    - id: 218883420b011112223
+                      name: Tim
+                      avatar: https://picsum.photos/200/200
+                categories:
+                    - id: 218892420b011212223
+                      name: Boxing
+                      avatar: https://picsum.photos/200/300
+
+                    - id: 218892420b011212223
+                      name: Jumpa
+                      avatar: https://picsum.photos/200/300
+
+                    - id: 218892420b011212323
+                      name: Hatha Yoga
+                      avatar: https://picsum.photos/200/300
+                sort_rating: DESC
+                sort_alphabet: ASC
+
+        FoodDetailOverviewArrayResponseExample:
+            value:
+                data:
+                    - id: 2188824200011112223
+                      name: Pho ga thom gon
+                      anergy: 300
+                      description: 'Phở gà là một món ăn quen thuộc với những nguyên liệu dễ tìm,
+                          cách nấu đơn giản mà ngon đậm đà lại còn đầy đủ chất dinh dưỡng'
+                      vitamins:
+                          - id: 2188824200021112223
+                            name: A
+                          - id: 2188824201021112223
+                            name: E
+                          - id: 2188824201021112223
+                            name: 5
+
+                    - id: 2188824200011122223
+                      name: Pho ga thom gon
+                      anergy: 300
+                      description: 'Phở gà là một món ăn quen thuộc với những nguyên liệu dễ tìm,
+                          cách nấu đơn giản mà ngon đậm đà lại còn đầy đủ chất dinh dưỡng'
+                      vitamins:
+                          - id: 2188824200021112223
+                            name: A
+                          - id: 2188824201021112223
+                            name: E
+                          - id: 2188824201021112223
+                            name: 5
+
+                    - id: 2188824200011212223
+                      name: Pho ga thom gon
+                      anergy: 300
+                      description: 'Phở gà là một món ăn quen thuộc với những nguyên liệu dễ tìm,
+                          cách nấu đơn giản mà ngon đậm đà lại còn đầy đủ chất dinh dưỡng'
+                      vitamins:
+                          - id: 2188824200021112223
+                            name: A
+                          - id: 2188824201021112223
+                            name: E
+                          - id: 2188824201021112223
+                            name: 5
+
+                    - id: 2188824212001121222
+                      name: Pho ga thom gon
+                      anergy: 300
+                      description: 'Phở gà là một món ăn quen thuộc với những nguyên liệu dễ tìm,
+                          cách nấu đơn giản mà ngon đậm đà lại còn đầy đủ chất dinh dưỡng'
+                      vitamins:
+                          - id: 2188824200021112223
+                            name: A
+                          - id: 2188824201021112223
+                            name: E
+                          - id: 2188824201021112223
+                            name: 5
+
+                    - id: 2188824212001121222
+                      name: Pho ga thom gon
+                      anergy: 300
+                      description: 'Phở gà là một món ăn quen thuộc với những nguyên liệu dễ tìm,
+                          cách nấu đơn giản mà ngon đậm đà lại còn đầy đủ chất dinh dưỡng'
+                      vitamins:
+                          - id: 2188824200021112223
+                            name: A
+                          - id: 2188824201021112223
+                            name: E
+                          - id: 2188824201021112223
+                            name: 5
+                pagination:
+                    current: 1
+                    next: 2
+                    pre: 0
+                    take: 5
+                    total: 10
+
+        UserCatalogPopularArrayResponseExample:
+            value:
+                data:
+                    - id: 2188824200011112223
+                      name: Hoang Thi Ngoc Hanh
+                      total_point: 9.9
+                      ranks:
+                          - id: 2198824200011112223
+                            rank_name: master 5 nam
+                            category_name: Yoga
+                          - id: 2198824202011112223
+                            rank_name: Trinh do 1
+                            category_name: Gym
+
+                    - id: 2188824200811112223
+                      name: Nguyen Thi Thanh Luan
+                      total_point: 6.9
+                      ranks:
+                          - id: 2198824200011112223
+                            rank_name: giao vien 200h
+                            category_name: Yoga
+
+                    - id: 2188824200111122248
+                      name: Dao Thi Tu Anh
+                      total_point: 7.9
+                      ranks:
+                          - id: 2198824200011112223
+                            rank_name: giao vien 500h
+                            category_name: Jumpa
+
+                    - id: 3188824208111122248
+                      name: Nguyen Hong Xuan Trang
+                      total_point: 7.9
+                      ranks:
+                          - id: 2198824200011112223
+                            rank_name: giao vien 500h
+                            category_name: Body compat
+                pagination:
+                    current: 1
+                    next: 2
+                    pre: 0
+                    take: 5
+                    total: 20

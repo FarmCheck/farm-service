@@ -1,0 +1,1 @@
+{"version":3,"file":"OrganizationNotFoundError.js","sourceRoot":"","sources":["../../../../../src/api/errors/Organization/OrganizationNotFoundError.ts"],"names":[],"mappings":";;;AAAA,6DAAgD;AAEhD,MAAa,yBAA0B,SAAQ,+BAAS;IACpD;QACI,KAAK,CAAC,GAAG,EAAE,yBAAyB,CAAC,CAAC;IAC1C,CAAC;CACJ;AAJD,8DAIC"}

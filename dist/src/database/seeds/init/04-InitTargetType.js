@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
+const typeorm_1 = require("typeorm");
+const uuid_1 = tslib_1.__importDefault(require("uuid"));
+const TargetType_1 = tslib_1.__importDefault(require("../../init/TargetType"));
+const models_1 = require("../../../api/models");
+const common_1 = require("../../../common");
+common_1.Helper.getLoadedConnectionOptions().then((connectionOptions) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+    typeorm_1.createConnection(connectionOptions)
+        .then((connection) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+        console.log('Seeding target type...');
+        for (const targetType of TargetType_1.default) {
+            const entity = new models_1.TargetType();
+            entity.id = uuid_1.default.v1();
+            entity.name = targetType.name;
+            yield connection.manager.save(entity);
+        }
+    }));
+}));
+//# sourceMappingURL=04-InitTargetType.js.map

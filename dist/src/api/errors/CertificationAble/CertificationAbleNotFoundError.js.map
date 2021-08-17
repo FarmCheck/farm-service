@@ -1,0 +1,1 @@
+{"version":3,"file":"CertificationAbleNotFoundError.js","sourceRoot":"","sources":["../../../../../src/api/errors/CertificationAble/CertificationAbleNotFoundError.ts"],"names":[],"mappings":";;;AAAA,6DAAgD;AAEhD,MAAa,8BAA+B,SAAQ,+BAAS;IACzD;QACI,KAAK,CAAC,GAAG,EAAE,+BAA+B,CAAC,CAAC;IAChD,CAAC;CACJ;AAJD,wEAIC"}

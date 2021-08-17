@@ -1,0 +1,1 @@
+{"version":3,"file":"OrganizationResolver.js","sourceRoot":"","sources":["../../../../src/api/resolvers/OrganizationResolver.ts"],"names":[],"mappings":";;;;AAAA,sCAAyC;AACzC,iDAA8C;AAC9C,+CAAwC;AAGxC,IAAa,oBAAoB,GAAjC,MAAa,oBAAqB,SAAQ,2BAAY,CAAC,GAAG,EAAE,CAAC,qBAAY,EAAE,cAAc,CAAC;CAAG,CAAA;AAAhF,oBAAoB;IADhC,uBAAQ,EAAE;GACE,oBAAoB,CAA4D;AAAhF,oDAAoB"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"CategoryNotFoundError.js","sourceRoot":"","sources":["../../../../../src/api/errors/Category/CategoryNotFoundError.ts"],"names":[],"mappings":";;;AAAA,6DAAgD;AAEhD,MAAa,qBAAsB,SAAQ,+BAAS;IAChD;QACI,KAAK,CAAC,GAAG,EAAE,qBAAqB,CAAC,CAAC;IACtC,CAAC;CACJ;AAJD,sDAIC"}

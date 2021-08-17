@@ -1,0 +1,40 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: farm-postgres
+  labels:
+    app: farm-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: farm-postgres
+      tier: postgres
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: farm-postgres
+        tier: postgres
+    spec:
+      containers:
+        - image: postgres:13-alpine
+          name: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "1234"
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - containerPort: 5432
+              name: postgres
+          volumeMounts:
+            - name: postgres-pv-farm
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-pv-farm
+          persistentVolumeClaim:
+            claimName: postgres-pvc-farm
